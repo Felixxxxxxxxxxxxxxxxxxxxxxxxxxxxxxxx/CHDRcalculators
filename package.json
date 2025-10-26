@@ -1,0 +1,6 @@
+{
+  "name": "student-help-site",
+  "version": "1.0.0",
+  "description": "Сайт помощи студентам с калькуляторами",
+  "main": "public/index.html"
+}
