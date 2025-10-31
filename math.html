@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математика - StudentHelp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo">StudentHelp</h1>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Поиск калькуляторов..." class="search-input">
+                    <div id="search-results" class="search-results"></div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="#calculators">Калькуляторы</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Математика</h1>
+                <p>Калькуляторы для решения задач по алгебре, геометрии, статистике и анализу данных</p>
+            </div>
+        </section>
+
+        <section id="calculators" class="calculators-section">
+            <div class="container">
+                <h2>Калькуляторы по математике</h2>
+                <div class="calculators-grid">
+                    
+                    <!-- Конвертер единиц -->
+                    <div class="calculator-card" id="unit-converter">
+                        <h3>Конвертер единиц измерения</h3>
+                        <p>Перевод между различными системами единиц: длина, масса, объем, температура</p>
+                        <form class="calculator-form">
+                            <div class="input-group">
+                                <label for="converter-category">Категория единиц:</label>
+                                <select id="converter-category" class="form-select" onchange="updateUnitOptions()">
+                                    <option value="length">Длина</option>
+                                    <option value="mass">Масса</option>
+                                    <option value="volume">Объем</option>
+                                    <option value="temperature">Температура</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="converter-value">Значение:</label>
+                                <input type="number" id="converter-value" class="form-input" step="0.001" placeholder="100">
+                            </div>
+                            <div class="input-group">
+                                <label for="converter-from">Из единицы:</label>
+                                <select id="converter-from" class="form-select"></select>
+                            </div>
+                            <div class="input-group">
+                                <label for="converter-to">В единицу:</label>
+                                <select id="converter-to" class="form-select"></select>
+                            </div>
+                            <button type="button" class="calculate-btn" onclick="convertUnits()">Конвертировать</button>
+                        </form>
+                        <div class="result" id="converter-result" style="display: none;">
+                            <h4>Результат:</h4>
+                            <p><span id="converter-original">0</span> = <span id="converter-converted">0</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Проценты -->
+                    <div class="calculator-card" id="percentage-calculator">
+                        <h3>Калькулятор процентов и скидок</h3>
+                        <p>Расчет процентов, скидок, наценок и изменений в процентах</p>
+                        <form class="calculator-form">
+                            <div class="input-group">
+                                <label for="percentage-type">Тип расчета:</label>
+                                <select id="percentage-type" class="form-select" onchange="updatePercentageFields()">
+                                    <option value="percent-of">Процент от числа</option>
+                                    <option value="percentage-change">Изменение в %</option>
+                                    <option value="discount">Скидка</option>
+                                    <option value="markup">Наценка</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="percentage-base">Исходное число:</label>
+                                <input type="number" id="percentage-base" class="form-input" step="0.01" placeholder="100">
+                            </div>
+                            <div class="input-group">
+                                <label for="percentage-value">Процент:</label>
+                                <input type="number" id="percentage-value" class="form-input" step="0.1" placeholder="20">
+                            </div>
+                            <div class="input-group" id="percentage-new-group" style="display: none;">
+                                <label for="percentage-new">Новое число:</label>
+                                <input type="number" id="percentage-new" class="form-input" step="0.01" placeholder="120">
+                            </div>
+                            <button type="button" class="calculate-btn" onclick="calculatePercentage()">Рассчитать</button>
+                        </form>
+                        <div class="result" id="percentage-result" style="display: none;">
+                            <h4>Результат:</h4>
+                            <p id="percentage-result-text"></p>
+                        </div>
+                    </div>
+
+                    <!-- Статистика -->
+                    <div class="calculator-card" id="statistics-basic">
+                        <h3>Основные статистические показатели</h3>
+                        <p>Расчет среднего значения, медианы, моды и стандартного отклонения</p>
+                        <form class="calculator-form">
+                            <div class="input-group">
+                                <label for="statistics-data">Введите числа (через запятую):</label>
+                                <input type="text" id="statistics-data" class="form-input" placeholder="10, 15, 20, 25, 30">
+                            </div>
+                            <button type="button" class="calculate-btn" onclick="calculateStatistics()">Рассчитать</button>
+                        </form>
+                        <div class="result" id="statistics-result" style="display: none;">
+                            <h4>Результат:</h4>
+                            <p>Среднее: <span id="stat-mean">0</span></p>
+                            <p>Медиана: <span id="stat-median">0</span></p>
+                            <p>Мода: <span id="stat-mode">0</span></p>
+                            <p>Стандартное отклонение: <span id="stat-stddev">0</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Кредиты -->
+                    <div class="calculator-card" id="loan-calculator">
+                        <h3>Калькулятор кредитов</h3>
+                        <p>Расчет ежемесячного платежа и переплаты по кредиту</p>
+                        <form class="calculator-form">
+                            <div class="input-group">
+                                <label for="loan-amount">Сумма кредита (руб):</label>
+                                <input type="number" id="loan-amount" class="form-input" placeholder="100000">
+                            </div>
+                            <div class="input-group">
+                                <label for="loan-term">Срок (месяцев):</label>
+                                <input type="number" id="loan-term" class="form-input" placeholder="12">
+                            </div>
+                            <div class="input-group">
+                                <label for="interest-rate">Процентная ставка (% год):</label>
+                                <input type="number" id="interest-rate" class="form-input" step="0.1" placeholder="12">
+                            </div>
+                            <button type="button" class="calculate-btn" onclick="calculateLoan()">Рассчитать</button>
+                        </form>
+                        <div class="result" id="loan-result" style="display: none;">
+                            <h4>Результат:</h4>
+                            <p>Ежемесячный платеж: <span id="monthly-payment">0</span> руб</p>
+                            <p>Общая переплата: <span id="total-overpayment">0</span> руб</p>
+                        </div>
+                    </div>
+
+                    <!-- ИМТ -->
+                    <div class="calculator-card" id="bmi-calculator">
+                        <h3>Калькулятор ИМТ</h3>
+                        <p>Индекс массы тела - оценка соответствия роста и веса</p>
+                        <form class="calculator-form">
+                            <div class="input-group">
+                                <label for="height">Рост (см):</label>
+                                <input type="number" id="height" class="form-input" placeholder="175">
+                            </div>
+                            <div class="input-group">
+                                <label for="weight">Вес (кг):</label>
+                                <input type="number" id="weight" class="form-input" placeholder="70">
+                            </div>
+                            <button type="button" class="calculate-btn" onclick="calculateBMI()">Рассчитать</button>
+                        </form>
+                        <div class="result" id="bmi-result" style="display: none;">
+                            <h4>Результат:</h4>
+                            <p>Ваш ИМТ: <span id="bmi-value">0</span></p>
+                            <p>Категория: <span id="bmi-category">-</span></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 StudentHelp. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+// Исправление навигации
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    
+    navLinks.forEach(link => {
+        if (link.textContent === 'Главная') {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Пробуем разные пути
+                const paths = [
+                    'index.html',
+                    '../public/index.html', 
+                    '/index.html',
+                    window.location.origin + '/index.html'
+                ];
+                
+                // Пробуем каждый путь пока не найдем рабочий
+                for (let path of paths) {
+                    try {
+                        window.location.href = path;
+                        return;
+                    } catch (error) {
+                        continue;
+                    }
+                }
+                
+                // Если ничего не сработало, показываем ошибку
+                alert('Главная страница не найдена. Проверьте структуру папок.');
+            });
+        }
+    });
+});
+</script>
+</body>
+</html>

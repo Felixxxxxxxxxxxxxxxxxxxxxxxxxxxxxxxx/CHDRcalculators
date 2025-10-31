@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHelp - Помощь студентам</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo">StudentHelp</h1>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Поиск калькуляторов..." class="search-input">
+                    <div id="search-results" class="search-results"></div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#categories">Калькуляторы</a></li>
+                    <li><a href="#about">О проекте</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Помощь студентам в технических расчетах</h1>
+                <p>Бесплатные онлайн-калькуляторы для решения учебных задач по физике, математике и инженерным дисциплинам</p>
+            </div>
+        </section>
+
+        <section id="categories" class="categories-section">
+            <div class="container">
+                <h2>Выберите область знаний</h2>
+                <div class="categories-grid">
+                    <a href="physics.html" class="category-card">
+                        <h3>Физика</h3>
+                        <p>Механика, электричество, оптика, кинематика</p>
+                    </a>
+                    <a href="math.html" class="category-card">
+                        <h3>Математика</h3>
+                        <p>Геометрия, алгебра, статистика, финансы</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>О проекте</h2>
+                <p>StudentHelp - это бесплатная платформа для помощи студентам в решении технических задач.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 StudentHelp. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

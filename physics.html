@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Физика - StudentHelp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo">StudentHelp</h1>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Поиск калькуляторов..." class="search-input">
+                    <div id="search-results" class="search-results"></div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="#calculators">Калькуляторы</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Физика</h1>
+                <p>Калькуляторы для решения задач по механике, электричеству, оптике и другим разделам физики</p>
+            </div>
+        </section>
+
+        <section id="calculators" class="calculators-section">
+            <div class="container">
+                <h2>Калькуляторы по физике</h2>
+                <div class="calculators-grid">
+                    
+                    <!-- Калькулятор 1: Сопротивление проводника -->
+                    <div class="calculator-card" id="resistance-calculator">
+                        <h3>Расчет сопротивления проводника</h3>
+                        <p>Рассчитайте сопротивление по удельному сопротивлению, длине и площади сечения</p>
+                        <div class="formula-description">
+                            <div class="formula">
+                                <strong>Формула:</strong> R = ρ × L / S
+                            </div>
+                            <div class="variables-list">
+                                <div><strong>R</strong> - сопротивление проводника (Ом)</div>
+                                <div><strong>ρ</strong> - удельное сопротивление материала (Ом·мм²/м)</div>
+                                <div><strong>L</strong> - длина проводника (м)</div>
+                                <div><strong>S</strong> - площадь поперечного сечения (мм²)</div>
+                            </div>
+                        </div>
+                        
+                        <form class="calculator-form">
+                            <div class="input-group">
+                                <label for="material">Материал проводника:</label>
+                                <select id="material" class="form-select">
+                                    <option value="0.017">Медь (0.017 Ом·мм²/м)</option>
+                                    <option value="0.028">Алюминий (0.028 Ом·мм²/м)</option>
+                                    <option value="0.10">Никелин (0.10 Ом·мм²/м)</option>
+                                    <option value="0.42">Константан (0.42 Ом·мм²/м)</option>
+                                    <option value="custom">Другой материал...</option>
+                                </select>
+                            </div>
+                            
+                            <div class="input-group" id="custom-material-group" style="display: none;">
+                                <label for="custom-resistivity">Удельное сопротивление ρ (Ом·мм²/м):</label>
+                                <input type="number" id="custom-resistivity" class="form-input" step="0.001" min="0.001" placeholder="0.017">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="length">Длина L (м):</label>
+                                <input type="number" id="length" class="form-input" step="0.1" min="0.1" placeholder="10">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="area">Площадь сечения S (мм²):</label>
+                                <input type="number" id="area" class="form-input" step="0.1" min="0.1" placeholder="1.5">
+                            </div>
+
+                            <button type="button" class="calculate-btn" onclick="calculateResistance()">Рассчитать</button>
+                        </form>
+
+                        <div class="result" id="resistance-result" style="display: none;">
+                            <h4>Результат:</h4>
+                            <p>Сопротивление проводника: <span id="result-value">0</span> Ом</p>
+                        </div>
+                    </div>
+
+                    <!-- Калькулятор 2: Второй закон Ньютона -->
+                    <div class="calculator-card" id="newton-second-law">
+                        <h3>Второй закон Ньютона</h3>
+                        <p>Расчет равнодействующей силы через массу и ускорение тела</p>
+                        <div class="formula-description">
+                            <div class="formula">
+                                <strong>Формула:</strong> F = m × a
+                            </div>
+                            <div class="variables-list">
+                                <div><strong>F</strong> - равнодействующая сила (Н)</div>
+                                <div><strong>m</strong> - масса тела (кг)</div>
+                                <div><strong>a</strong> - ускорение тела (м/с²)</div>
+                            </div>
+                        </div>
+                        
+                        <form class="calculator-form">
+                            <div class="input-group">
+                                <label for="mass-newton">Масса m (кг):</label>
+                                <input type="number" id="mass-newton" class="form-input" step="0.1" min="0.1" placeholder="2">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="acceleration">Ускорение a (м/с²):</label>
+                                <input type="number" id="acceleration" class="form-input" step="0.1" min="0.1" placeholder="5">
+                            </div>
+
+                            <button type="button" class="calculate-btn" onclick="calculateNewton()">Рассчитать</button>
+                        </form>
+
+                        <div class="result" id="newton-result" style="display: none;">
+                            <h4>Результат:</h4>
+                            <p>Сила: <span id="force-value">0</span> Н</p>
+                        </div>
+                    </div>
+
+                    <!-- Калькулятор 3: Закон сохранения энергии -->
+                    <div class="calculator-card" id="energy-conservation">
+                        <h3>Закон сохранения энергии</h3>
+                        <p>Полная механическая энергия системы в замкнутой системе</p>
+                        <div class="formula-description">
+                            <div class="formula">
+                                <strong>Формула:</strong> E = E<sub>кин</sub> + E<sub>пот</sub>
+                            </div>
+                            <div class="variables-list">
+                                <div><strong>E</strong> - полная механическая энергия (Дж)</div>
+                                <div><strong>E<sub>кин</sub></strong> - кинетическая энергия (Дж)</div>
+                                <div><strong>E<sub>пот</sub></strong> - потенциальная энергия (Дж)</div>
+                            </div>
+                        </div>
+                        
+                        <form class="calculator-form">
+                            <div class="input-group">
+                                <label for="kinetic-energy">Кинетическая энергия E<sub>кин</sub> (Дж):</label>
+                                <input type="number" id="kinetic-energy" class="form-input" step="0.1" min="0" placeholder="100">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="potential-energy">Потенциальная энергия E<sub>пот</sub> (Дж):</label>
+                                <input type="number" id="potential-energy" class="form-input" step="0.1" min="0" placeholder="50">
+                            </div>
+
+                            <button type="button" class="calculate-btn" onclick="calculateEnergy()">Рассчитать</button>
+                        </form>
+
+                        <div class="result" id="energy-result" style="display: none;">
+                            <h4>Результат:</h4>
+                            <p>Полная энергия: <span id="total-energy">0</span> Дж</p>
+                        </div>
+                    </div>
+
+                    <!-- Калькулятор 4: Закон Кулона -->
+                    <div class="calculator-card" id="coulombs-law">
+                        <h3>Закон Кулона</h3>
+                        <p>Сила взаимодействия двух точечных электрических зарядов</p>
+                        <div class="formula-description">
+                            <div class="formula">
+                                <strong>Формула:</strong> F = k × |q₁ × q₂| / r²
+                            </div>
+                            <div class="variables-list">
+                                <div><strong>F</strong> - сила взаимодействия (Н)</div>
+                                <div><strong>k</strong> - постоянная Кулона (9×10⁹ Н·м²/Кл²)</div>
+                                <div><strong>q₁, q₂</strong> - величины зарядов (Кл)</div>
+                                <div><strong>r</strong> - расстояние между зарядами (м)</div>
+                            </div>
+                        </div>
+                        
+                        <form class="calculator-form">
+                            <div class="input-group">
+                                <label for="charge1">Заряд q₁ (Кл):</label>
+                                <input type="number" id="charge1" class="form-input" step="0.0000001" placeholder="0.000001">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="charge2">Заряд q₂ (Кл):</label>
+                                <input type="number" id="charge2" class="form-input" step="0.0000001" placeholder="0.000001">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="distance-coulomb">Расстояние r (м):</label>
+                                <input type="number" id="distance-coulomb" class="form-input" step="0.01" min="0.01" placeholder="0.1">
+                            </div>
+
+                            <button type="button" class="calculate-btn" onclick="calculateCoulomb()">Рассчитать</button>
+                        </form>
+
+                        <div class="result" id="coulomb-result" style="display: none;">
+                            <h4>Результат:</h4>
+                            <p>Сила взаимодействия: <span id="coulomb-force">0</span> Н</p>
+                        </div>
+                    </div>
+
+                    <!-- Калькулятор 5: Энергия фотона -->
+                    <div class="calculator-card" id="photon-energy">
+                        <h3>Энергия фотона</h3>
+                        <p>Энергия кванта электромагнитного излучения</p>
+                        <div class="formula-description">
+                            <div class="formula">
+                                <strong>Формула:</strong> E = h × ν
+                            </div>
+                            <div class="variables-list">
+                                <div><strong>E</strong> - энергия фотона (Дж)</div>
+                                <div><strong>h</strong> - постоянная Планка (6.626×10⁻³⁴ Дж·с)</div>
+                                <div><strong>ν</strong> - частота излучения (Гц)</div>
+                            </div>
+                        </div>
+                        
+                        <form class="calculator-form">
+                            <div class="input-group">
+                                <label for="frequency">Частота ν (Гц):</label>
+                                <input type="number" id="frequency" class="form-input" step="1000000000" min="0" placeholder="500000000000000">
+                            </div>
+
+                            <button type="button" class="calculate-btn" onclick="calculatePhoton()">Рассчитать</button>
+                        </form>
+
+                        <div class="result" id="photon-result" style="display: none;">
+                            <h4>Результат:</h4>
+                            <p>Энергия фотона: <span id="photon-energy-value">0</span> Дж</p>
+                        </div>
+                    </div>
+
+                    <!-- Калькулятор 6: Кинематика -->
+                    <div class="calculator-card" id="kinematics-calculator">
+                        <h3>Кинематика: движение тела</h3>
+                        <p>Расчет пути, скорости и ускорения</p>
+                        <div class="formula-description">
+                            <div class="formula">
+                                <strong>Формула:</strong> S = v₀t + (at²)/2
+                            </div>
+                            <div class="variables-list">
+                                <div><strong>S</strong> - пройденный путь (м)</div>
+                                <div><strong>v₀</strong> - начальная скорость (м/с)</div>
+                                <div><strong>a</strong> - ускорение (м/с²)</div>
+                                <div><strong>t</strong> - время (с)</div>
+                            </div>
+                        </div>
+                        <form class="calculator-form">
+                            <div class="input-group">
+                                <label for="initial-velocity">Начальная скорость v₀ (м/с):</label>
+                                <input type="number" id="initial-velocity" class="form-input" placeholder="0">
+                            </div>
+                            <div class="input-group">
+                                <label for="acceleration-kin">Ускорение a (м/с²):</label>
+                                <input type="number" id="acceleration-kin" class="form-input" placeholder="9.8">
+                            </div>
+                            <div class="input-group">
+                                <label for="time-kin">Время t (с):</label>
+                                <input type="number" id="time-kin" class="form-input" placeholder="5">
+                            </div>
+                            <button type="button" class="calculate-btn" onclick="calculateKinematics()">Рассчитать</button>
+                        </form>
+                        <div class="result" id="kinematics-result" style="display: none;">
+                            <h4>Результат:</h4>
+                            <p>Пройденный путь: <span id="distance-traveled">0</span> м</p>
+                            <p>Конечная скорость: <span id="final-velocity">0</span> м/с</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 StudentHelp. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+// Исправление навигации
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    
+    navLinks.forEach(link => {
+        if (link.textContent === 'Главная') {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Пробуем разные пути
+                const paths = [
+                    'index.html',
+                    '../public/index.html', 
+                    '/index.html',
+                    window.location.origin + '/index.html'
+                ];
+                
+                // Пробуем каждый путь пока не найдем рабочий
+                for (let path of paths) {
+                    try {
+                        window.location.href = path;
+                        return;
+                    } catch (error) {
+                        continue;
+                    }
+                }
+                
+                // Если ничего не сработало, показываем ошибку
+                alert('Главная страница не найдена. Проверьте структуру папок.');
+            });
+        }
+    });
+});
+</script>
+</body>
+</html>
